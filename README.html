@@ -1,0 +1,179 @@
+<h1>Annotation scripts README</h1>
+
+<p>This README describes the various scripts available for doing manual
+segmentation of media files, for annotation or other purposes, and converting
+from-to the file formats of several related tools.</p>
+
+<p>The scripts are either in <em>python2</em> or <em>perl</em>, but interpreters for these
+should be readily available.</p>
+
+<p>Please send any questions/suggestions to <a href="&#x6D;&#97;&#x69;l&#x74;&#111;:&#x61;&#x6E;&#x74;&#111;&#x6E;&#105;&#111;&#46;&#109;&#x61;&#x63;&#x69;&#97;&#115;&#46;&#x6F;&#106;&#x65;&#x64;&#x61;&#64;&#x61;&#97;&#x6C;t&#x6F;&#46;&#x66;i">&#x61;&#x6E;&#x74;&#111;&#x6E;&#105;&#111;&#46;&#109;&#x61;&#x63;&#x69;&#97;&#115;&#46;&#x6F;&#106;&#x65;&#x64;&#x61;&#64;&#x61;&#97;&#x6C;t&#x6F;&#46;&#x66;i</a></p>
+
+<h2>mseg.py</h2>
+
+<p>Script to help perform manual segmentation of a media file, it can be any
+media file type supported by mplayer. It's only dependency is a Python-mplayer
+wrapper that can be installed locally by executing:</p>
+
+<pre><code>$ easy_install --user mplayer.py
+</code></pre>
+
+<p>After that executing it is just:</p>
+
+<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile
+</code></pre>
+
+<p>The output file is optional. It also supports the invocation:</p>
+
+<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile -i inputfile
+</code></pre>
+
+<p>To continue a previously saved segmentation session. Once in the program, the
+controls are:</p>
+
+<ul>
+<li>Quit: <em>esc</em> or <em>q</em></li>
+<li>Pause: <em>p</em></li>
+<li>Mark position: <em>space</em></li>
+<li>Manually edit mark: <em>e</em></li>
+<li>Add manual mark: <em>a</em></li>
+<li>Remove mark: <em>r</em></li>
+<li>Faster speed: <em>Up</em></li>
+<li>Slower speed: <em>Down</em></li>
+<li>Rewind: <em>Left</em></li>
+<li>Fast Forward: <em>Right</em></li>
+<li>Scroll down marks: <em>pgDwn</em></li>
+<li>Scroll up marks: <em>pgUp</em></li>
+</ul>
+
+<p>The media file starts as paused, so to start reproduction just hit the <em>p</em>
+key.</p>
+
+<h2>mseg2elan.py</h2>
+
+<p>Script to convert from mseg output to Elan file format.</p>
+
+<p>Usage:</p>
+
+<pre><code>$ ./mseg2elan.py msoutputfile -o outputfile
+</code></pre>
+
+<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.
+Once in Elan, segments can be easily fine tuned by changing to the
+segmentation mode, in Options->Segmentation Mode.</p>
+
+<h2>aku2elan.py</h2>
+
+<p>Script to convert from AKU recipes to Elan file format.</p>
+
+<p>Usage:</p>
+
+<pre><code>$ ./aku2elan.py recipe -o outputfile
+</code></pre>
+
+<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.
+Once in Elan, segments can be easily fine tuned by changing to the
+segmentation mode, in Options->Segmentation Mode.</p>
+
+<h2>elan2aku.py</h2>
+
+<p>Script to convert from Elan file format to AKU recipes.</p>
+
+<p>Usage:</p>
+
+<pre><code>$ ./elan2aku.py elanoutputfile -o akurecipe
+</code></pre>
+
+<p>If <em>akurecipe</em> is not specified, the output will be sent to the stdout.</p>
+
+<h2>mseg<em>to</em>textgrid.pl</h2>
+
+<p>Script to convert from mseg output to praat file format.</p>
+
+<p>Usage:</p>
+
+<pre><code>$ perl mseg_to_textgrid.pl msfile &gt; outputfile
+</code></pre>
+
+<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.</p>
+
+<h2>voice-detection.py</h2>
+
+<p>Creates an AKU recipe from the <em>classify_speecon</em> output (.exp files). </p>
+
+<p>For full help, use:</p>
+
+<p>$ ./voice-detection.py -h</p>
+
+<h2>vad-performance.py</h2>
+
+<p>Rates the performance of a Voice Activity Detection recipe in AKU format, such
+as those created with <em>voice-detection.py</em>. To measure the performance, another
+recipe with ground truth should be provided.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./vad-performance.py -h</p>
+
+<h2>spk-change-detection.py</h2>
+
+<p>Performs speaker turn segmentation over audio, using a distance measure such as
+GLR, KL2 or BIC, and sliding or growing window. It requires an input recipe file
+in AKU format pointing to the audio files, and preferably with turns of
+speech/non-speech already processed, and a features file for each wav to
+process, in the format outputted by the feacat program of the AKU suite.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./spk-change-detection.py -h</p>
+
+<h2>spk-change-performance.py</h2>
+
+<p>Rates the performance of a speaker turn segmentation recipe in AKU format, such
+as those created with <em>spk-change-detection.py</em>. To measure the performance,
+another recipe with ground truth should be provided.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./spk-change-performance.py -h</p>
+
+<h2>spk-clustering.py</h2>
+
+<p>Performs speaker turn clustering over audio. It requires a speaker segmentation
+recipe in AKU format, such as those created with <em>spk-change-detection.py</em>, and
+a features file for each wav file to process, in the format outputted by the
+feacat program of the AKU suite.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./spk-clustering.py -h</p>
+
+<h2>spk-time.py</h2>
+
+<p>Calculates per-speaker speaking time from a speaker-tagged recipe in AKU format.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./spk-time.py -h</p>
+
+<h2>spk-diarization.py</h2>
+
+<p>Performs full speaker diarization over media file. If the media is not a wav
+file it tries to convert it to wav using ffmpeg. It then calls
+<em>classify_speecon.pl</em>, <em>voice-detection.py</em>, <em>spk-change-detection.py</em> and
+<em>spk-clustering.py</em> in succession.</p>
+
+<p>For full help, use:</p>
+
+<p>$ ./spk-diarization.py -h</p>
+
+<p>Notes:</p>
+
+<ul>
+<li>Paths for the other scripts and features must be provided.</li>
+<li><em>classify_speecon</em> must be properly configured for this to work, edit it
+and related files to ensure that all paths are set properly or it will fail.</li>
+<li>Since this script is a convenient wrapper for the other scripts of the family,
+it doesn't have options for all the settings of the other scripts, just some
+defaults. If you want to tune them, edit this script directly.</li>
+</ul>
