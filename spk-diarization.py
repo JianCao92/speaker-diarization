@@ -61,7 +61,7 @@ if __name__ == '__main__':
         args.fcpath += '/'
     args.fcpath += 'feacat'
     if not op.isfile(args.fcpath):
-        print '%s does not exist, exiting' % args.feacat
+        print '%s does not exist, exiting' % args.fcpath
         sys.exit()
     print 'Using feacat from:', args.fcpath
 
