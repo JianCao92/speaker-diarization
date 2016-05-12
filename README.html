@@ -1,36 +1,39 @@
-<h1>Annotation scripts README</h1>
-
-<p>This README describes the various scripts available for doing manual
-segmentation of media files, for annotation or other purposes, and converting
-from-to the file formats of several related tools.</p>
-
-<p>The scripts are either in <em>python2</em> or <em>perl</em>, but interpreters for these
-should be readily available.</p>
-
-<p>Please send any questions/suggestions to <a href="&#x6D;&#97;&#x69;l&#x74;&#111;:&#x61;&#x6E;&#x74;&#111;&#x6E;&#105;&#111;&#46;&#109;&#x61;&#x63;&#x69;&#97;&#115;&#46;&#x6F;&#106;&#x65;&#x64;&#x61;&#64;&#x61;&#97;&#x6C;t&#x6F;&#46;&#x66;i">&#x61;&#x6E;&#x74;&#111;&#x6E;&#105;&#111;&#46;&#109;&#x61;&#x63;&#x69;&#97;&#115;&#46;&#x6F;&#106;&#x65;&#x64;&#x61;&#64;&#x61;&#97;&#x6C;t&#x6F;&#46;&#x66;i</a></p>
-
-<h2>mseg.py</h2>
-
-<p>Script to help perform manual segmentation of a media file, it can be any
-media file type supported by mplayer. It's only dependency is a Python-mplayer
-wrapper that can be installed locally by executing:</p>
-
-<pre><code>$ easy_install --user mplayer.py
-</code></pre>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="speaker-diarization-scripts-readme">Speaker Diarization scripts README</h1>
+<p>This README describes the various scripts available for doing manual segmentation of media files, for annotation or other purposes, for speaker diarization, and converting from-to the file formats of several related tools.</p>
+<p>The scripts are either in <code>python2</code> or <code>perl</code>, but interpreters for these should be readily available.</p>
+<p>Please send any questions/suggestions to <script type="text/javascript">
+<!--
+h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#46;&#x6d;&#x61;&#x63;&#x69;&#x61;&#x73;&#46;&#x6f;&#106;&#x65;&#100;&#x61;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#46;&#x6d;&#x61;&#x63;&#x69;&#x61;&#x73;&#46;&#x6f;&#106;&#x65;&#100;&#x61;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript></p>
+<h2 id="installation-instructions">Installation instructions</h2>
+<p>Most of these scripts depend on the <code>aku</code> tools that are part of the <code>AaltoASR</code> package that you can find <a href="https://github.com/aalto-speech/AaltoASR">here</a>. You should compile that for your platform first.</p>
+<p>In this <code>speaker-diarization</code> directory:</p>
+<ul>
+<li>Add a symlink to the folder <code>AaltoASR/build</code></li>
+<li>Add a symlink to <code>AaltoASR/aku/feacat</code></li>
+<li>Make sure the <code>ffmpeg</code> executable is on path or add a symlink to it too.</li>
+</ul>
+<p>You probably want to use <code>spk-diarization2.py</code> since that one calls the <em>2</em> versions of some scrips (no <code>matlab</code> dependencies for example). Don’t use <code>spk-diarization3.py</code> since that one just tries a bunch of numbers to find the best parameters for each sub-command, and there’s things commented out since I was doing them one at a time during thesis work. It will be removed from this repository at some point.</p>
+<h2 id="mseg.py">mseg.py</h2>
+<p>Script to help perform manual segmentation of a media file, it can be any media file type supported by <code>mplayer</code>. It's only dependency is a <code>Python-mplayer</code> wrapper that can be installed locally by executing:</p>
+<pre><code>$ pip install --user mplayer.py</code></pre>
 <p>After that executing it is just:</p>
-
-<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile
-</code></pre>
-
+<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile</code></pre>
 <p>The output file is optional. It also supports the invocation:</p>
-
-<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile -i inputfile
-</code></pre>
-
-<p>To continue a previously saved segmentation session. Once in the program, the
-controls are:</p>
-
+<pre><code>$ ./mseg.py /path/to/mediafile -o outputfile -i inputfile</code></pre>
+<p>To continue a previously saved segmentation session. Once in the program, the controls are:</p>
 <ul>
 <li>Quit: <em>esc</em> or <em>q</em></li>
 <li>Pause: <em>p</em></li>
@@ -45,135 +48,61 @@ controls are:</p>
 <li>Scroll down marks: <em>pgDwn</em></li>
 <li>Scroll up marks: <em>pgUp</em></li>
 </ul>
-
-<p>The media file starts as paused, so to start reproduction just hit the <em>p</em>
-key.</p>
-
-<h2>mseg2elan.py</h2>
-
+<p>The media file starts as paused, so to start reproduction just hit the <em>p</em> key.</p>
+<h2 id="mseg2elan.py">mseg2elan.py</h2>
 <p>Script to convert from mseg output to Elan file format.</p>
-
 <p>Usage:</p>
-
-<pre><code>$ ./mseg2elan.py msoutputfile -o outputfile
-</code></pre>
-
-<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.
-Once in Elan, segments can be easily fine tuned by changing to the
-segmentation mode, in Options->Segmentation Mode.</p>
-
-<h2>aku2elan.py</h2>
-
+<pre><code>$ ./mseg2elan.py msoutputfile -o outputfile</code></pre>
+<p>If <code>outputfile</code> is not specified, the output will be sent to the stdout. Once in Elan, segments can be easily fine tuned by changing to the segmentation mode, in Options-&gt;Segmentation Mode.</p>
+<h2 id="aku2elan.py">aku2elan.py</h2>
 <p>Script to convert from AKU recipes to Elan file format.</p>
-
 <p>Usage:</p>
-
-<pre><code>$ ./aku2elan.py recipe -o outputfile
-</code></pre>
-
-<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.
-Once in Elan, segments can be easily fine tuned by changing to the
-segmentation mode, in Options->Segmentation Mode.</p>
-
-<h2>elan2aku.py</h2>
-
+<pre><code>$ ./aku2elan.py recipe -o outputfile</code></pre>
+<p>If <code>outputfile</code> is not specified, the output will be sent to the <code>stdout</code>. Once in Elan, segments can be easily fine tuned by changing to the segmentation mode, in Options-&gt;Segmentation Mode.</p>
+<h2 id="elan2aku.py">elan2aku.py</h2>
 <p>Script to convert from Elan file format to AKU recipes.</p>
-
 <p>Usage:</p>
-
-<pre><code>$ ./elan2aku.py elanoutputfile -o akurecipe
-</code></pre>
-
-<p>If <em>akurecipe</em> is not specified, the output will be sent to the stdout.</p>
-
-<h2>mseg<em>to</em>textgrid.pl</h2>
-
+<pre><code>$ ./elan2aku.py elanoutputfile -o akurecipe</code></pre>
+<p>If <code>akurecipe</code> is not specified, the output will be sent to the <code>stdout</code>.</p>
+<h2 id="mseg_to_textgrid.pl">mseg_to_textgrid.pl</h2>
 <p>Script to convert from mseg output to praat file format.</p>
-
 <p>Usage:</p>
-
-<pre><code>$ perl mseg_to_textgrid.pl msfile &gt; outputfile
-</code></pre>
-
-<p>If <em>outputfile</em> is not specified, the output will be sent to the stdout.</p>
-
-<h2>voice-detection.py</h2>
-
-<p>Creates an AKU recipe from the <em>classify_speecon</em> output (.exp files). </p>
-
+<pre><code>$ perl mseg_to_textgrid.pl msfile &gt; outputfile</code></pre>
+<p>If <code>outputfile</code> is not specified, the output will be sent to the <code>stdout</code>.</p>
+<h2 id="voice-detection.py">voice-detection.py</h2>
+<p>Creates an <code>AKU</code> recipe from the <code>classify_speecon</code> output (<code>.exp</code> files).</p>
 <p>For full help, use:</p>
-
-<p>$ ./voice-detection.py -h</p>
-
-<h2>vad-performance.py</h2>
-
-<p>Rates the performance of a Voice Activity Detection recipe in AKU format, such
-as those created with <em>voice-detection.py</em>. To measure the performance, another
-recipe with ground truth should be provided.</p>
-
+<pre><code>$ ./voice-detection.py -h</code></pre>
+<h2 id="vad-performance.py">vad-performance.py</h2>
+<p>Rates the performance of a Voice Activity Detection recipe in <code>AKU</code> format, such as those created with <code>voice-detection.py</code>. To measure the performance, another recipe with ground truth should be provided.</p>
 <p>For full help, use:</p>
-
-<p>$ ./vad-performance.py -h</p>
-
-<h2>spk-change-detection.py</h2>
-
-<p>Performs speaker turn segmentation over audio, using a distance measure such as
-GLR, KL2 or BIC, and sliding or growing window. It requires an input recipe file
-in AKU format pointing to the audio files, and preferably with turns of
-speech/non-speech already processed, and a features file for each wav to
-process, in the format outputted by the feacat program of the AKU suite.</p>
-
+<pre><code>$ ./vad-performance.py -h</code></pre>
+<h2 id="spk-change-detection.py">spk-change-detection.py</h2>
+<p>Performs speaker turn segmentation over audio, using a distance measure such as GLR, KL2 or BIC, and sliding or growing window. It requires an input recipe file in <code>AKU</code> format pointing to the audio files, and preferably with turns of speech/non-speech already processed, and a features file for each wav to process, in the format outputted by the <code>feacat</code> program of the <code>AKU</code> suite.</p>
 <p>For full help, use:</p>
-
-<p>$ ./spk-change-detection.py -h</p>
-
-<h2>spk-change-performance.py</h2>
-
-<p>Rates the performance of a speaker turn segmentation recipe in AKU format, such
-as those created with <em>spk-change-detection.py</em>. To measure the performance,
-another recipe with ground truth should be provided.</p>
-
+<pre><code>$ ./spk-change-detection.py -h</code></pre>
+<h2 id="spk-change-performance.py">spk-change-performance.py</h2>
+<p>Rates the performance of a speaker turn segmentation recipe in <code>AKU</code> format, such as those created with <code>spk-change-detection.py</code>. To measure the performance, another recipe with ground truth should be provided.</p>
 <p>For full help, use:</p>
-
-<p>$ ./spk-change-performance.py -h</p>
-
-<h2>spk-clustering.py</h2>
-
-<p>Performs speaker turn clustering over audio. It requires a speaker segmentation
-recipe in AKU format, such as those created with <em>spk-change-detection.py</em>, and
-a features file for each wav file to process, in the format outputted by the
-feacat program of the AKU suite.</p>
-
+<pre><code>$ ./spk-change-performance.py -h</code></pre>
+<h2 id="spk-clustering.py">spk-clustering.py</h2>
+<p>Performs speaker turn clustering over audio. It requires a speaker segmentation recipe in AKU format, such as those created with <code>spk-change-detection.py</code>, and a features file for each wav file to process, in the format outputted by the feacat program of the AKU suite.</p>
 <p>For full help, use:</p>
-
-<p>$ ./spk-clustering.py -h</p>
-
-<h2>spk-time.py</h2>
-
-<p>Calculates per-speaker speaking time from a speaker-tagged recipe in AKU format.</p>
-
+<pre><code>$ ./spk-clustering.py -h</code></pre>
+<h2 id="spk-time.py">spk-time.py</h2>
+<p>Calculates per-speaker speaking time from a speaker-tagged recipe in <code>AKU</code> format.</p>
 <p>For full help, use:</p>
-
-<p>$ ./spk-time.py -h</p>
-
-<h2>spk-diarization.py</h2>
-
-<p>Performs full speaker diarization over media file. If the media is not a wav
-file it tries to convert it to wav using ffmpeg. It then calls
-<em>classify_speecon.pl</em>, <em>voice-detection.py</em>, <em>spk-change-detection.py</em> and
-<em>spk-clustering.py</em> in succession.</p>
-
+<pre><code>$ ./spk-time.py -h</code></pre>
+<h2 id="spk-diarization.py">spk-diarization.py</h2>
+<p>Performs full speaker diarization over media file. If the media is not a <code>wav</code> file it tries to convert it to wav using <code>ffmpeg</code>. It then calls <code>classify_speecon.pl</code>, <code>voice-detection.py</code>, <code>spk-change-detection.py</code> and <code>spk-clustering.py</code> in succession.</p>
 <p>For full help, use:</p>
-
-<p>$ ./spk-diarization.py -h</p>
-
+<pre><code>$ ./spk-diarization.py -h</code></pre>
 <p>Notes:</p>
-
 <ul>
 <li>Paths for the other scripts and features must be provided.</li>
-<li><em>classify_speecon</em> must be properly configured for this to work, edit it
-and related files to ensure that all paths are set properly or it will fail.</li>
-<li>Since this script is a convenient wrapper for the other scripts of the family,
-it doesn't have options for all the settings of the other scripts, just some
-defaults. If you want to tune them, edit this script directly.</li>
+<li><code>classify_speecon</code> must be properly configured for this to work, edit it and related files to ensure that all paths are set properly or it will fail.</li>
+<li>Since this script is a convenient wrapper for the other scripts of the family, it doesn't have options for all the settings of the other scripts, just some defaults. If you want to tune them, edit this script directly.</li>
+<li>Some scripts have a <em>2</em> version. Usage of that one is preferable.</li>
 </ul>
+</body>
+</html>
