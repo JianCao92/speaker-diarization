@@ -133,7 +133,7 @@ def write_recipe(rec, epath, outf):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Creates a recipe from the \
-                        Speech Activity Detection classify_speecon output, \
+                        Speech Activity Detection generate_exp.py output, \
                         (.exp files) that is, speech/non-speech turn detection')
     parser.add_argument('recfile', type=str,
                         help='Specifies the input recipe file')

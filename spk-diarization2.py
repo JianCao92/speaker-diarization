@@ -118,7 +118,6 @@ if __name__ == '__main__':
 
     spkchange_recipe = mkstemp(suffix='.recipe', prefix='spkc',
                                dir=args.tmppath)[1]
-    vad_recipe = './outputs/vad_{}_ms05_mns15.rec'.format(mediafile)
     print 'Calling spk-change-detection.py'
     call(['./spk-change-detection.py', vad_recipe, args.feapath,
         '-o', spkchange_recipe, '-m', 'gw', '-d', 'BIC', '-w', '1.0',

@@ -15,13 +15,25 @@ Installation instructions
 
 Most of these scripts depend on the `aku` tools that are part of the `AaltoASR`
 package that you can find [here](https://github.com/aalto-speech/AaltoASR). You
-should compile that for your platform first.
+should compile that for your platform first, following [these](https://github.com/aalto-speech/AaltoASR/blob/develop/INSTALLATION.md) instructions.
 
 In this `speaker-diarization` directory:
 
+- Add a symlink to the folder `AaltoASR/`
 - Add a symlink to the folder `AaltoASR/build`
 - Add a symlink to `AaltoASR/build/aku/feacat`
 - Make sure the `ffmpeg` executable is on path or add a symlink to it too.
+
+For example, if you have cloned and built `AaltoASR` into the `../AaltoASR`
+path (relative to `speaker-diarization`):
+
+```bash
+speaker-diarization$ ln -s ../AaltoASR ./
+speaker-diarization$ ln -s ../AaltoASR/build ./
+speaker-diarization$ ln -s ../AaltoASR/build/aku/feacat ./
+```
+
+Would work.
 
 You probably want to use `spk-diarization2.py` since that one calls the *2*
 versions of some scrips, while `spk-diarization.py` uses an old, `matlab`-based
@@ -111,14 +123,14 @@ Usage:
 
 If `outputfile` is not specified, the output will be sent to the `stdout`.
 
-voice-detection.py
-------------------
+voice-detection2.py
+-------------------
 
-Creates an `AKU` recipe from the `classify_speecon` output (`.exp` files).
+Creates an `AKU` recipe from the `generate_exp.py` output (`.exp` files).
 
 For full help, use:
 
-    $ ./voice-detection.py -h
+    $ ./voice-detection2.py -h
 
 vad-performance.py
 ------------------
@@ -177,7 +189,7 @@ For full help, use:
     $ ./spk-time.py -h
 
 spk-diarization2.py
-------------------
+-------------------
 
 Performs full speaker diarization over media file. If the media is not a `wav`
 file it tries to convert it to wav using `ffmpeg`. It then calls

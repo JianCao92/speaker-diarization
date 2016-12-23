@@ -26,7 +26,7 @@ Usage:
         -e PATH, --exppath PATH    Choose a folder to drop the exp files [default: ./exp]
         -m MODEL, --model MODEL    Choose a model [default: ./hmms/mfcc_16g_11.10.2007_10]
         -a PATH, --asrpath PATH    Path to AaltoASR package [default: ./AaltoASR]
-        -t PATH, --tokenpath PATH  Path to binary `test_token_pass` [default: ./]
+        -t PATH, --tokenpass PATH  Path to binary `test_token_pass` [default: ./VAD/tokenpass/test_token_pass]
 """
 import sys
 import os
@@ -52,11 +52,12 @@ def validate_arguments(arguments):
         print 'ERROR:', arguments['--model'], 'does not exist.'
         exit()
     # Check for `phone_probs`
-    arguments['PPROBS'] = op.join(arguments['--asrpath'], 'aku', 'phone_probs')
+    arguments['PPROBS'] = op.join(arguments['--asrpath'], 'build', 'aku',
+                                  'phone_probs')
     if not op.isfile(arguments['PPROBS']):
         print 'ERROR: Unable to find `phone_probs` in', arguments['PPROBS']
         exit()
-    dec_path = op.join(arguments['--asrpath'], 'decoder', 'src', 'swig')
+    dec_path = op.join(arguments['--asrpath'], 'build', 'decoder', 'src', 'swig')
     try:
         sys.path.append(dec_path)
         global Decoder
@@ -64,10 +65,10 @@ def validate_arguments(arguments):
     except ImportError:
         print 'ERROR: Decoder.py not found in', arguments['DEC']
         exit()
-    print 'tokenpath:', arguments['--tokenpath']
-    arguments['TOKENPASS'] = op.join(arguments['--tokenpath'], 'test_token_pass')
-    if not op.isfile(arguments['TOKENPASS']):
-        print 'ERROR: Unable to find `test_token_pass` in', arguments['TOKENPASS']
+    print 'tokenpass:', arguments['--tokenpass']
+    if not op.isfile(arguments['--tokenpass']):
+        print 'ERROR: Unable to find `test_token_pass` in',
+        arguments['--tokenpass']
         exit()
 
     print 'Reading recipe:', arguments['RECIPE']
@@ -264,4 +265,4 @@ if __name__ == '__main__':
     lnas = get_lnas(arguments)
     shift_dec_bord(lnas, arguments['--exppath'])
     # classify(lnas, arguments['--model'], arguments['--exppath'])
-    classify_old(arguments['TOKENPASS'], lnas, arguments['--model'], arguments['--exppath'])
+    classify_old(arguments['--tokenpass'], lnas, arguments['--model'], arguments['--exppath'])

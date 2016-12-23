@@ -1,0 +1,12 @@
+# Output folders
+/fea/*
+/exp/*
+/lna/*
+
+# Python bytecode
+*.pyc
+
+# Symlinks to be added by the user, ignore
+AaltoASR
+build
+feacat

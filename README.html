@@ -6,6 +6,43 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
 </head>
 <body>
 <h1 id="speaker-diarization-scripts-readme">Speaker Diarization scripts README</h1>
@@ -13,13 +50,19 @@
 <p>The scripts are either in <code>python2</code> or <code>perl</code>, but interpreters for these should be readily available.</p>
 <p>Please send any questions/suggestions to <a href="mailto:antonio.macias.ojeda@gmail.com">antonio.macias.ojeda@gmail.com</a></p>
 <h2 id="installation-instructions">Installation instructions</h2>
-<p>Most of these scripts depend on the <code>aku</code> tools that are part of the <code>AaltoASR</code> package that you can find <a href="https://github.com/aalto-speech/AaltoASR">here</a>. You should compile that for your platform first.</p>
+<p>Most of these scripts depend on the <code>aku</code> tools that are part of the <code>AaltoASR</code> package that you can find <a href="https://github.com/aalto-speech/AaltoASR">here</a>. You should compile that for your platform first, following <a href="https://github.com/aalto-speech/AaltoASR/blob/develop/INSTALLATION.md">these</a> instructions.</p>
 <p>In this <code>speaker-diarization</code> directory:</p>
 <ul>
+<li>Add a symlink to the folder <code>AaltoASR/</code></li>
 <li>Add a symlink to the folder <code>AaltoASR/build</code></li>
 <li>Add a symlink to <code>AaltoASR/build/aku/feacat</code></li>
 <li>Make sure the <code>ffmpeg</code> executable is on path or add a symlink to it too.</li>
 </ul>
+<p>For example, if you have cloned and built <code>AaltoASR</code> into the <code>../AaltoASR</code> path (relative to <code>speaker-diarization</code>):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">speaker-diarization</span>$ ln -s ../AaltoASR ./
+<span class="ex">speaker-diarization</span>$ ln -s ../AaltoASR/build ./
+<span class="ex">speaker-diarization</span>$ ln -s ../AaltoASR/build/aku/feacat ./</code></pre></div>
+<p>Would work.</p>
 <p>You probably want to use <code>spk-diarization2.py</code> since that one calls the <em>2</em> versions of some scrips, while <code>spk-diarization.py</code> uses an old, <code>matlab</code>-based <code>VAD</code> that is hard to configure and deprecated.</p>
 <h2 id="mseg.py">mseg.py</h2>
 <p>Script to help perform manual segmentation of a media file, it can be any media file type supported by <code>mplayer</code>. It's only dependency is a <code>Python-mplayer</code> wrapper that can be installed locally by executing:</p>
@@ -64,10 +107,10 @@
 <p>Usage:</p>
 <pre><code>$ perl mseg_to_textgrid.pl msfile &gt; outputfile</code></pre>
 <p>If <code>outputfile</code> is not specified, the output will be sent to the <code>stdout</code>.</p>
-<h2 id="voice-detection.py">voice-detection.py</h2>
-<p>Creates an <code>AKU</code> recipe from the <code>classify_speecon</code> output (<code>.exp</code> files).</p>
+<h2 id="voice-detection2.py">voice-detection2.py</h2>
+<p>Creates an <code>AKU</code> recipe from the <code>generate_exp.py</code> output (<code>.exp</code> files).</p>
 <p>For full help, use:</p>
-<pre><code>$ ./voice-detection.py -h</code></pre>
+<pre><code>$ ./voice-detection2.py -h</code></pre>
 <h2 id="vad-performance.py">vad-performance.py</h2>
 <p>Rates the performance of a Voice Activity Detection recipe in <code>AKU</code> format, such as those created with <code>voice-detection.py</code>. To measure the performance, another recipe with ground truth should be provided.</p>
 <p>For full help, use:</p>
