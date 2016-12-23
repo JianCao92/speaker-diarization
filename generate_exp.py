@@ -195,7 +195,7 @@ def classify(lnas, model, exppath):
     hmms = model + '.ph'
     lexicon = './vad_models/sp_nsp.lex'
     ngram = './vad_models/malli.bin'
-    t = Decoder.Toolbox(0, hmms, None)  # 0 tokenpass, 1 stack decoder
+    t = Decoder.Toolbox(hmms, None)
     # Some parameters have been disassembled from the compiled binary
     # `test_token_pass` that was in the old Voice Activity Detection software.
     t.set_lm_lookahead(0)
@@ -211,9 +211,7 @@ def classify(lnas, model, exppath):
     t.set_word_boundary('<w>')
     t.set_print_text_result(True)
     t.set_print_state_segmentation(False)
-    t.set_print_frames(True)  # Only works in stack decoder
     t.set_print_probs(False)
-    t.set_print_indices(False)
     # These 3 from tokenpass.pm
     t.set_transition_scale(2)  # 1 in `test_token_pass`
     t.set_lm_scale(10)  # 10 in `test_token_pass`
