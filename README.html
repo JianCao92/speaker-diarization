@@ -11,18 +11,13 @@
 <h1 id="speaker-diarization-scripts-readme">Speaker Diarization scripts README</h1>
 <p>This README describes the various scripts available for doing manual segmentation of media files, for annotation or other purposes, for speaker diarization, and converting from-to the file formats of several related tools.</p>
 <p>The scripts are either in <code>python2</code> or <code>perl</code>, but interpreters for these should be readily available.</p>
-<p>Please send any questions/suggestions to <script type="text/javascript">
-<!--
-h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#46;&#x6d;&#x61;&#x63;&#x69;&#x61;&#x73;&#46;&#x6f;&#106;&#x65;&#100;&#x61;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#46;&#x6d;&#x61;&#x63;&#x69;&#x61;&#x73;&#46;&#x6f;&#106;&#x65;&#100;&#x61;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript></p>
+<p>Please send any questions/suggestions to <a href="mailto:antonio.macias.ojeda@gmail.com">antonio.macias.ojeda@gmail.com</a></p>
 <h2 id="installation-instructions">Installation instructions</h2>
 <p>Most of these scripts depend on the <code>aku</code> tools that are part of the <code>AaltoASR</code> package that you can find <a href="https://github.com/aalto-speech/AaltoASR">here</a>. You should compile that for your platform first.</p>
 <p>In this <code>speaker-diarization</code> directory:</p>
 <ul>
 <li>Add a symlink to the folder <code>AaltoASR/build</code></li>
-<li>Add a symlink to <code>AaltoASR/aku/feacat</code></li>
+<li>Add a symlink to <code>AaltoASR/build/aku/feacat</code></li>
 <li>Make sure the <code>ffmpeg</code> executable is on path or add a symlink to it too.</li>
 </ul>
 <p>You probably want to use <code>spk-diarization2.py</code> since that one calls the <em>2</em> versions of some scrips (no <code>matlab</code> dependencies for example). Don’t use <code>spk-diarization3.py</code> since that one just tries a bunch of numbers to find the best parameters for each sub-command, and there’s things commented out since I was doing them one at a time during thesis work. It will be removed from this repository at some point.</p>

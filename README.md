@@ -20,7 +20,7 @@ should compile that for your platform first.
 In this `speaker-diarization` directory:
 
 - Add a symlink to the folder `AaltoASR/build`
-- Add a symlink to `AaltoASR/aku/feacat`
+- Add a symlink to `AaltoASR/build/aku/feacat`
 - Make sure the `ffmpeg` executable is on path or add a symlink to it too.
 
 You probably want to use `spk-diarization2.py` since that one calls the *2*
