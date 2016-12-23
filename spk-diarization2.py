@@ -123,7 +123,6 @@ if __name__ == '__main__':
         '-o', spkchange_recipe, '-m', 'gw', '-d', 'BIC', '-w', '1.0',
         '-st', '3.0', '-dws', '0.1', '-l', '1.0'])
 
-    sys.exit()
     print 'Calling spk-clustering.py'
     call(['./spk-clustering.py', spkchange_recipe, args.feapath,
           '-o', outfile, '-m', 'hi', '-l', '1.3'])
