@@ -20,7 +20,7 @@
 <li>Add a symlink to <code>AaltoASR/build/aku/feacat</code></li>
 <li>Make sure the <code>ffmpeg</code> executable is on path or add a symlink to it too.</li>
 </ul>
-<p>You probably want to use <code>spk-diarization2.py</code> since that one calls the <em>2</em> versions of some scrips (no <code>matlab</code> dependencies for example). Don’t use <code>spk-diarization3.py</code> since that one just tries a bunch of numbers to find the best parameters for each sub-command, and there’s things commented out since I was doing them one at a time during thesis work. It will be removed from this repository at some point.</p>
+<p>You probably want to use <code>spk-diarization2.py</code> since that one calls the <em>2</em> versions of some scrips, while <code>spk-diarization.py</code> uses an old, <code>matlab</code>-based <code>VAD</code> that is hard to configure and deprecated.</p>
 <h2 id="mseg.py">mseg.py</h2>
 <p>Script to help perform manual segmentation of a media file, it can be any media file type supported by <code>mplayer</code>. It's only dependency is a <code>Python-mplayer</code> wrapper that can be installed locally by executing:</p>
 <pre><code>$ pip install --user mplayer.py</code></pre>
@@ -88,14 +88,13 @@
 <p>Calculates per-speaker speaking time from a speaker-tagged recipe in <code>AKU</code> format.</p>
 <p>For full help, use:</p>
 <pre><code>$ ./spk-time.py -h</code></pre>
-<h2 id="spk-diarization.py">spk-diarization.py</h2>
-<p>Performs full speaker diarization over media file. If the media is not a <code>wav</code> file it tries to convert it to wav using <code>ffmpeg</code>. It then calls <code>classify_speecon.pl</code>, <code>voice-detection.py</code>, <code>spk-change-detection.py</code> and <code>spk-clustering.py</code> in succession.</p>
+<h2 id="spk-diarization2.py">spk-diarization2.py</h2>
+<p>Performs full speaker diarization over media file. If the media is not a <code>wav</code> file it tries to convert it to wav using <code>ffmpeg</code>. It then calls <code>generate_exp.py</code>, <code>voice-detection.py</code>, <code>spk-change-detection.py</code> and <code>spk-clustering.py</code> in succession.</p>
 <p>For full help, use:</p>
-<pre><code>$ ./spk-diarization.py -h</code></pre>
+<pre><code>$ ./spk-diarization2.py -h</code></pre>
 <p>Notes:</p>
 <ul>
 <li>Paths for the other scripts and features must be provided.</li>
-<li><code>classify_speecon</code> must be properly configured for this to work, edit it and related files to ensure that all paths are set properly or it will fail.</li>
 <li>Since this script is a convenient wrapper for the other scripts of the family, it doesn't have options for all the settings of the other scripts, just some defaults. If you want to tune them, edit this script directly.</li>
 <li>Some scripts have a <em>2</em> version. Usage of that one is preferable.</li>
 </ul>

@@ -24,11 +24,8 @@ In this `speaker-diarization` directory:
 - Make sure the `ffmpeg` executable is on path or add a symlink to it too.
 
 You probably want to use `spk-diarization2.py` since that one calls the *2*
-versions of some scrips (no `matlab` dependencies for example). Don’t use
-`spk-diarization3.py` since that one just tries a bunch of numbers to find the
-best parameters for each sub-command, and there’s things  commented out since I
-was doing them one at a time during thesis work. It will be removed from this
-repository at some point.
+versions of some scrips, while `spk-diarization.py` uses an old, `matlab`-based
+`VAD` that is hard to configure and deprecated.
 
 mseg.py
 -------
@@ -179,23 +176,21 @@ For full help, use:
 
     $ ./spk-time.py -h
 
-spk-diarization.py
+spk-diarization2.py
 ------------------
 
 Performs full speaker diarization over media file. If the media is not a `wav`
 file it tries to convert it to wav using `ffmpeg`. It then calls
-`classify_speecon.pl`, `voice-detection.py`, `spk-change-detection.py` and
+`generate_exp.py`, `voice-detection.py`, `spk-change-detection.py` and
 `spk-clustering.py` in succession.
 
 For full help, use:
 
-    $ ./spk-diarization.py -h
+    $ ./spk-diarization2.py -h
 
 Notes:
 
 - Paths for the other scripts and features must be provided.
-- `classify_speecon` must be properly configured for this to work, edit it
-and related files to ensure that all paths are set properly or it will fail.
 - Since this script is a convenient wrapper for the other scripts of the family,
   it doesn't have options for all the settings of the other scripts, just some
   defaults. If you want to tune them, edit this script directly.
