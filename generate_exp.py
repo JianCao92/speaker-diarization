@@ -193,8 +193,8 @@ def classify(lnas, model, exppath):
     Basically replaces the old `test_token_pass` binary.
     """
     hmms = model + '.ph'
-    lexicon = './models/sp_nsp.lex'
-    ngram = './models/malli.bin'
+    lexicon = './vad_models/sp_nsp.lex'
+    ngram = './vad_models/malli.bin'
     t = Decoder.Toolbox(0, hmms, None)  # 0 tokenpass, 1 stack decoder
     # Some parameters have been disassembled from the compiled binary
     # `test_token_pass` that was in the old Voice Activity Detection software.
@@ -264,5 +264,5 @@ if __name__ == '__main__':
     generate_lnas(arguments)
     lnas = get_lnas(arguments)
     shift_dec_bord(lnas, arguments['--exppath'])
-    # classify(lnas, arguments['--model'], arguments['--exppath'])
-    classify_old(arguments['--tokenpass'], lnas, arguments['--model'], arguments['--exppath'])
+    classify(lnas, arguments['--model'], arguments['--exppath'])
+    # classify_old(arguments['--tokenpass'], lnas, arguments['--model'], arguments['--exppath'])
