@@ -202,10 +202,10 @@ def dist_gw(features, recline, outf, dist=bic, segf=None):
         i = minfeas
         maxd = -sys.maxint - 1
         while i < end - start - minfeas:
-            arr1 = features[start:start + i]
-            arr2 = features[start + i:end]
+            arr1 = features[int(start):int(start + i)]
+            arr2 = features[int(start + i):int(end)]
             if dist == bic:
-                arr = features[start:end]
+                arr = features[int(start):int(end)]
                 d = dist(arr1, arr2, arr, i, saved_calculations)
             else:
                 d = dist(arr1, arr2)
@@ -235,10 +235,10 @@ def dist_gw(features, recline, outf, dist=bic, segf=None):
             i = maxi - istep
             endtune = maxi + istep
             while i < endtune:
-                arr1 = features[start:start + i]
-                arr2 = features[start + i:end]
+                arr1 = features[int(start):int(start + i)]
+                arr2 = features[int(start + i):int(end)]
                 if dist == bic:
-                    arr = features[start:end]
+                    arr = features[int(start):int(end)]
                     d = dist(arr1, arr2, arr, i, saved_calculations)
                 else:
                     d = dist(arr1, arr2)
@@ -370,7 +370,7 @@ def detect_changes(recipe, outf, segf=None):
         if dfun != merge_rec:
             if recipe[l][1] != this_lna:
                 this_lna = recipe[l][1]
-                dfun(feas[1][recipe[l][2] * rate:recipe[l][3] * rate],
+                dfun(feas[1][int(recipe[l][2] * rate):int(recipe[l][3] * rate)],
                      recipe[l], outf, dist, segf)
         else:  # Merge mode
             if l + 1 < len(recipe):
