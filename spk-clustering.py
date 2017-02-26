@@ -44,11 +44,11 @@ def load_features(recipeLine, fpath, ext):
 
 
 def get_spk_features(spk, features):
-    arr = features[spk[0][0]:spk[0][1]]
+    arr = features[int(spk[0][0]):int(spk[0][1])]
     for s in spk[1:]:
         # TODO: This copies, should be much faster and less memory consuming
         # with views of the features, same everywhere else
-        arr = np.concatenate((arr, features[s[0]:s[1]]))
+        arr = np.concatenate((arr, features[int(s[0]):int(s[1])]))
     return arr
 
 
