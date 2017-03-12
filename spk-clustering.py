@@ -137,8 +137,8 @@ def spk_cluster_in(features, recline, speakers, outf, dist=bic, segf=None):
     """Clusters same speaker turns"""
     global total_segments
     global max_dist, min_dist, max_det_dist, min_det_dist
-    start = recline[2] * rate
-    end = recline[3] * rate
+    start = int(recline[2] * rate)
+    end = int(recline[3] * rate)
     arr2 = features[start:end]
     mind = sys.maxint
     spk = 0
