@@ -10,6 +10,21 @@ should be readily available.
 
 Please send any questions/suggestions to <antonio.macias.ojeda@gmail.com>
 
+Quick Start Using Docker
+------------------------
+
+A pre-built [docker](https://hub.docker.com/r/blabbertabber/aalto-speech-diarizer/~/dockerfile/) container can be used to run the
+the scripts. In the following example, we use the container to diarize a
+`meeting.wav` file:
+
+```bash
+docker run -it blabbertabber/aalto-speech-diarizer bash
+cd /speaker-diarization
+curl -k -OL https://nono.io/meeting.wav  # sample .wav; substitute yours
+./spk-diarization2.py meeting.wav        # substitute your .wav filename
+cat stdout                               # browse output
+```
+
 Installation instructions
 -------------------------
 
@@ -207,3 +222,11 @@ Notes:
   it doesn't have options for all the settings of the other scripts, just some
   defaults. If you want to tune them, edit this script directly.
 - Some scripts have a *2* version. Usage of that one is preferable.
+
+Contributors
+------------
+
+Brendan Cunnie ([@saintbrendan](https://github.com/saintbrendan/),
+saintbrendan@gmail.com) and Brian Cunnie
+([@cunnie](https://github.com/cunnie/), brian.cunnie@gmail.com) contributed the
+Dockerfile.
