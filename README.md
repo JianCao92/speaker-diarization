@@ -14,7 +14,13 @@ Quick Start Using Docker
 ------------------------
 
 A pre-built [docker](https://hub.docker.com/r/blabbertabber/aalto-speech-diarizer/~/dockerfile/) container can be used to run the
-the scripts. In the following example, we use the container to diarize a
+the scripts.
+
+```
+docker pull blabbertabber/aalto-speech-diarizer
+```
+
+In the following example, we use the container to diarize a
 `meeting.wav` file:
 
 ```bash
@@ -230,3 +236,5 @@ Brendan Cunnie ([@saintbrendan](https://github.com/saintbrendan/),
 saintbrendan@gmail.com) and Brian Cunnie
 ([@cunnie](https://github.com/cunnie/), brian.cunnie@gmail.com) contributed the
 Dockerfile.
+Tran Tu ([@tran2](https://github.com/tran2), trand.tu@gmail.com) added ffmpeg to
+it for non-wav files support.
