@@ -1,6 +1,6 @@
 # This is a Dockerfile of the Aalto Speech Diarizer.
 # To install using this Dockerfile:
-#   docker build .
+#   docker build . -t speech-diarizer
 #
 # To run:
 #   docker run -it blabbertabber/aalto-speech-diarizer bash
@@ -16,11 +16,11 @@ LABEL authors="Brian Cunnie <brian.cunnie@gmail.com>, Brendan Cunnie <saintbrend
 
 # for converting audio files to wav
 RUN dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-RUN yum install -y ffmpeg
+RUN dnf install -y ffmpeg
 
 # required development tools
 RUN dnf groupinstall -y "Development Tools"; \
-    dnf install -y cmake \
+    dnf install -y https://kojipkgs.fedoraproject.org//packages/cmake/2.8.12.2/2.fc21/x86_64/cmake-2.8.12.2-2.fc21.x86_64.rpm \
         SDL-devel \
         python-devel \
         lapack-devel \
